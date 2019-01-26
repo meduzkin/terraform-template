@@ -24,8 +24,10 @@ data "aws_vpc" "selected" {
   id = "${var.vpc_id}"
 }
 resource "aws_subnet" "example" {
-  vpc_id            = "${var.vpc_id}"
-  availability_zone = "${var.availability_zones}"
+  vpc_id = "${var.project_name}-${var.environment_name}-standart-vpc"
+  availability_zones = "${var.region_name}-1a", "${var.region_name}-1b"
+  // vpc_id            = "${var.vpc_id}"
+  // availability_zone = "${var.availability_zones}"
   // cidr_block        = "${cidrsubnet(data.aws_vpc.selected.cidr_block, 4, 1)}"
 }
 
