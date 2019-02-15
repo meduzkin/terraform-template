@@ -1,7 +1,3 @@
-// provider "aws" {
-//   region = "${var.region_name}"
-// }
-
 # Define a vpc
 resource "aws_vpc" "vpc_name" {
   cidr_block = "${var.vpc_cidr_block}"
@@ -57,11 +53,6 @@ resource "aws_route_table_association" "vpc_public_sn_rt_assn" {
   route_table_id = "${aws_route_table.vpc_public_sn_rt.id}"
 }
 
-// output "vpc_region" {
-//   value = "${var.vpc_region}"
-// }
-// 
-// variable "vpc_id" {}
 
 output "vpc_id" {
   value = "${aws_vpc.vpc_name.id}"

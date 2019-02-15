@@ -1,7 +1,7 @@
-
 module "vpc" {
   source = "../vpc"
 }
+
 # ECS Instance Security group
 resource "aws_security_group" "vpc_public_sg" {
   name = "demo_pubic_sg"
