@@ -4,16 +4,16 @@ module "vpc" {
 
 # ECS Instance Security group
 resource "aws_security_group" "vpc_public_sg" {
-  name = "demo_pubic_sg"
-  description = "demo public access security group"
+  name = "devopsinstance"
+  description = "security group for devopsinstance"
   vpc_id = "${module.vpc.vpc_id}"
 
   ingress {
     from_port = 22
     to_port = 22
-    protocol = "tcp"
+    protocol = "ssh"
     cidr_blocks = [
-      "${var.vpc_free_access}"]
+    "${var.vpc_public_subnet_1_cidr}"]
   }
 
   ingress {
@@ -21,7 +21,7 @@ resource "aws_security_group" "vpc_public_sg" {
     to_port = 0
     protocol = "tcp"
     cidr_blocks = [
-      "${var.vpc_public_subnet_1_cidr}"]
+      "${var.vpc_free_access}"]
   }
 
   egress {

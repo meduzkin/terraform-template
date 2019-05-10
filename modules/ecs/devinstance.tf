@@ -1,7 +1,7 @@
 module "vpc" {
   source = "../vpc"
 }
-module "secutiry_group" {
+module "sg" {
   source = "../secutiry_group"
 }
 

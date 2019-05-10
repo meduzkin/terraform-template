@@ -37,7 +37,7 @@ variable "vpc_public_subnet_1_cidr" {
   description = "Public 0.0 CIDR for externally accessible subnet"
 }
 
-variable "vpc_access_from_ip_range" {
+variable "vpc_free_access" {
   default = "0.0.0.0/0"
   description = "Access can be made from the following IPs"
 }
