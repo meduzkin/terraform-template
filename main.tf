@@ -2,7 +2,7 @@
 provider "aws" {
   region = "us-west-2"
   shared_credentials_file = "/home/artem/.aws/credentials"
-  // region = "${var.region_name}"
+  # region = "${var.region_name}"
 }
 
 module "vpc" {
@@ -12,13 +12,12 @@ module "vpc" {
 module "sg" {
   source = "modules/security_group"
 }
-//
-// # Configuring IAM
-// module "iam" {
-//   source = "modules/iam_roles"
-// }
-//
-// # Configuring ECS
-// module "ecs" {
-//   source = "modules/ecs"
-// }
+# Configuring IAM
+module "iam" {
+  source = "modules/iam"
+}
+# 
+#  # Configuring ECS
+#  module "ecs" {
+#    source = "modules/ecs"
+#  }

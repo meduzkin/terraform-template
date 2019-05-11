@@ -13,9 +13,9 @@ resource "aws_instance" "web" {
   tags = {
     Name = "devops"
   }
-  storage 20gb gp2
+  # storage 20gb gp2
 
   vpc_security_group_ids = "${module.sg.devopsisntance}"
-  !!!IAM_ROLE
-  iam_instance_profile = "${module.iam.POLICTY_ROLE_NAME}"
+  # !!!IAM_ROLE
+  iam_instance_profile = "${module.iam.devops}"
 }
