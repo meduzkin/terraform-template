@@ -11,7 +11,7 @@ resource "aws_security_group" "vpc_public_sg" {
   ingress {
     from_port = 22
     to_port = 22
-    protocol = "ssh"
+    protocol = "22"
     cidr_blocks = [
     "${var.vpc_public_subnet_1_cidr}"]
   }
@@ -35,6 +35,10 @@ resource "aws_security_group" "vpc_public_sg" {
   tags {
     Name = "demo_pubic_sg"
   }
+}
+
+output "public_sg_id" {
+  value = "${aws_security_group.vpc_public_sg.id}"
 }
 
 resource "aws_security_group" "vpc_private_sg" {
@@ -88,4 +92,8 @@ resource "aws_security_group" "vpc_private_sg" {
   tags {
     Name = "demo_private_sg"
   }
+
+}
+output "private_sg_id" {
+  value = ["${aws_security_group.vpc_private_sg.id}"]
 }

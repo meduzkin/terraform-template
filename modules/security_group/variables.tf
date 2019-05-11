@@ -12,8 +12,8 @@ variable "environment_name" {
 
 variable "availability_zone" {
   default = {
-    us-east-1 = "us-east-1a"
-    us-west-1 = "us-west-1a"
+    us-west-2 = "us-west-2a"
+    us-west-1 = "us-west-2b"
   }
 }
 
@@ -40,4 +40,9 @@ variable "vpc_public_subnet_1_cidr" {
 variable "vpc_free_access" {
   default = "0.0.0.0/0"
   description = "Access can be made from the following IPs"
+}
+
+variable "allow-access-from-krks" {
+  default = "95.188.74.95/32"
+  description = "Access from KRKS office"
 }

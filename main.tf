@@ -1,7 +1,7 @@
 ### Provider
 provider "aws" {
   region = "us-west-2"
-  shared_credentials_file = "/home/artem/.aws/credentials"
+  shared_credentials_file = "/home/root/.aws/credentials"
   # region = "${var.region_name}"
 }
 
@@ -18,6 +18,6 @@ module "iam" {
 }
 # 
 #  # Configuring ECS
-#  module "ecs" {
-#    source = "modules/ecs"
-#  }
+ module "ecs" {
+   source = "modules/ecs"
+ }

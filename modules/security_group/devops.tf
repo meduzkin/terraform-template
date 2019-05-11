@@ -6,21 +6,21 @@ resource "aws_security_group" "devops_security_group" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["${var.allow-access-from-krks}"]
   }
 
   ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["${var.allow-access-from-krks}"]
   }
 
   ingress {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["${var.allow-access-from-krks}"]
   }
 
   egress {
@@ -31,6 +31,6 @@ resource "aws_security_group" "devops_security_group" {
   }
 }
 
-output "sg_devops_id" {
+output "devops_sg_id" {
   value = "${aws_security_group.devops_security_group.id}"
 }
