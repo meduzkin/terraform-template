@@ -11,10 +11,6 @@ variable "environment_name" {
 }
 
 variable "availability_zone" {
-  # default = {
-  #   us-west-2 = "us-west-2a"
-  #   us-west-1 = "us-west-2b"
-  # }
   default = "us-west-2a"
 }
 
