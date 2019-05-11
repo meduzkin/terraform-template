@@ -18,6 +18,6 @@ module "iam" {
    source = "modules/ecs"
    vpc_id = "${module.vpc.vpc_id}"
    vpc_security_group_ids = "${module.sg.devops_sg_id}"
-   subnet_id = "${module.vpc.vpc_private_sn_id}"
+   subnet_id = "${module.vpc.vpc_public_sn_id}"
    iam_instance_profile = "${module.iam.devops_iam_id}"
  }

@@ -30,7 +30,17 @@ resource "aws_instance" "web" {
   subnet_id = "${var.subnet_id}"
   iam_instance_profile = "${var.iam_instance_profile}"
   availability_zone = "${var.availability_zone}"
+  associate_public_ip_address = true
+  key_name = "devops"
   tags = {
     Name = "devops"
   }
+}
+
+resource "aws_key_pair" "devops" {
+  key_name = "devops"
+  #TODO
+  public_key = "add_here_public_key"
+  # sz ssh key
+  #public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABBwYDE19M3kzGucOuxuimiuLZIAIy85MuNACbdwrzgeKQNr6rL0KJHLK06pYPTr+JGwyotqZ/npTTO+HFfqKo+TbN6o+KgJBK9zuSjmkolWqoFkVQBuzdBNnCBI4a0XfeaiirY33Kw/c5QwaCRUJGW18xx8ysw425bKnmIYc76/4t+Yc5scn1ZuI2yaRGSbn0wQbM73sBhRX0+XQrCPFbk+wZMeQuQdtWog2KTVl9WjfPuEN1ZkH+oPFnY5i6zkDrkQz2QCyEWY7qzxV1hv0wv0hk1aoDjkxtBCfNeAcGctXZGuGIKhNBfii5CbRZsMDzrPJR2JW4PC6RwdYXBrU89rWsQhUxT+f9" 
 }
