@@ -1,7 +1,9 @@
+variable "vpc_id" {}
+
 resource "aws_security_group" "devops_security_group" {
   name        = "devops"
   description = "Security group for devops instance"
-
+  vpc_id = "${var.vpc_id}"
   ingress {
     from_port   = 22
     to_port     = 22

@@ -1,7 +1,8 @@
 resource "aws_security_group" "elb_security_group" {
   name        = "load-balancer"
   description = "Security group for ELB"
-
+  vpc_id = "${var.vpc_id}"
+  
   ingress {
     from_port   = 443
     to_port     = 443
@@ -22,4 +23,8 @@ resource "aws_security_group" "elb_security_group" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+}
+
+output "sg_lb_id" {
+  value = "${aws_security_group.elb_security_group.id}"
 }

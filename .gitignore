@@ -1,4 +1,4 @@
 .terraform
 plan.md
-terraforfm.tfstate
-terraforfm.tfstate.backup
+terraform.tfstate
+terraform.tfstate.backup
