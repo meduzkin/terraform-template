@@ -32,6 +32,45 @@ resource "aws_instance" "web" {
   availability_zone = "${var.availability_zone}"
   associate_public_ip_address = true
   key_name = "devops"
+  user_data = << EOF
+		#! /bin/bash
+    sudo yum update && sudo yum upgrade
+    yum isntall nginx wget java
+    sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
+    sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+    sudo yum install jenkins
+    echo '''
+          // server {
+          //     listen 80;
+          //     server_name jenkins.domain.tld;
+          //     return 301 https://$host$request_uri;
+          // }
+          server {
+              listen 80;
+              server_name jenkins.domain.tld;
+              
+              location / {
+                proxy_set_header        Host $host:$server_port;
+                proxy_set_header        X-Real-IP $remote_addr;
+                proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header        X-Forwarded-Proto $scheme;
+          
+                # Fix the "It appears that your reverse proxy set up is broken" error.
+                proxy_pass          http://127.0.0.1:8080;
+                proxy_read_timeout  90;
+          
+                proxy_redirect      http://127.0.0.1:8080 https://jenkins.domain.tld;
+            
+                # Required for new HTTP-based CLI
+                proxy_http_version 1.1;
+                proxy_request_buffering off;
+                # workaround for https://issues.jenkins-ci.org/browse/JENKINS-45651
+                add_header 'X-SSH-Endpoint' 'jenkins.domain.tld:50022' always;
+              }
+            }
+            ''' > /etc/nginx/vhost.d/jenkins.conf
+    
+	EOF
   tags = {
     Name = "devops"
   }
